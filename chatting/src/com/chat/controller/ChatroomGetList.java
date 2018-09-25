@@ -17,7 +17,7 @@ public class ChatroomGetList implements Controller{
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		System.out.println("getChatroomList 실행");
+		//System.out.println("getChatroomList 실행");
 		ArrayList<ChatroomVo> list = null;
 		ArrayList<HashVo> hashList = null;
 		ChatroomService service = ChatroomService.getChatroomService();
@@ -33,6 +33,7 @@ public class ChatroomGetList implements Controller{
 			//System.out.println("chatname : " + list.get(x).getChatroomName());
 			hashList = service_2.getHashList(list.get(x).getChatroomNum());			
 			result.append("[{\"value\" : \"" + list.get(x).getChatroomName() + "\"},");
+			result.append("{\"value\" : \"" + list.get(x).getChatroomNum() + "\"},");
 			for(int y = 0 ; y < hashList.size() ; y++)
 			{
 				if(y == hashList.size() - 1)
@@ -45,7 +46,7 @@ public class ChatroomGetList implements Controller{
 			if(x != list.size() - 1) result.append(",");
 		}
 		result.append("]}");
-		System.out.println(result.toString());
+		//System.out.println(result.toString());
 		res.getWriter().write(result.toString());
 	}
 

@@ -7,7 +7,16 @@ public class ChatVo {
 	private int chatNum;
 	private String chatContent;
 	private Date chatTime;
+	private int chatroomNum;
 	private int userNum;
+	private String userName;
+	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public int getChatNum() {
 		return chatNum;
 	}
@@ -38,5 +47,4 @@ public class ChatVo {
 	public void setChatroomNum(int chatroomNum) {
 		this.chatroomNum = chatroomNum;
 	}
-	private int chatroomNum;
 }
