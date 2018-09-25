@@ -1,5 +1,7 @@
 package com.chat.service;
 
+import java.util.ArrayList;
+
 import com.chat.dao.ChatroomDao;
 import com.chat.vo.ChatroomVo;
 
@@ -17,5 +19,9 @@ public class ChatroomService {
 	{
 		//System.out.println("chatroomnum in service : " + dao.createChatroom(cr, userNum));
 		return dao.createChatroom(cr, userNum);
+	}
+	public ArrayList<ChatroomVo> getChatroomList(String type) {
+		// TODO Auto-generated method stub
+		return dao.getChatroomList(type);
 	}
 }

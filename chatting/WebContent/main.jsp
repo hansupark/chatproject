@@ -33,7 +33,7 @@
 					}
 				 else if(result == 2)
 					{
-						window.location.replace("chatList.jsp");
+						window.location.replace("feed.jsp");
 					} 
 			}
 			

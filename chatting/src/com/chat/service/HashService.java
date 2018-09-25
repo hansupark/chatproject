@@ -20,5 +20,11 @@ public class HashService {
 	{
 		dao.setHash(list,chatroomNum);
 	}
-
+	
+	public ArrayList<HashVo> getHashList(int chatroomNum)
+	{
+		return dao.getHashList(chatroomNum);
+	}
+	
+	
 }

@@ -1,10 +1,10 @@
 package com.chat.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import com.chat.vo.ChatroomVo;
 
@@ -72,10 +72,9 @@ public class ChatroomDao {
 		{
 			
 			conn = getConnection();
-			psmt = conn.prepareStatement("insert into chatroom (chatroomName,chatroomMadeTime,userNum) values(?,?,?)");
+			psmt = conn.prepareStatement("insert into chatroom (chatroomName,chatroomMadeTime,userNum) values(?,now(),?)");
 			psmt.setString(1,cr.getChatroomName());
-			psmt.setDate(2,new java.sql.Date((cr.getChatroomMadeTime()).getTime()));
-			psmt.setInt(3, userNum);
+			psmt.setInt(2, userNum);
 			psmt.executeUpdate();
 			psmt = conn.prepareStatement("select LAST_INSERT_ID()"); //가장 마지막에 들어간 채팅방의 id를 갖고옴 
 			rs = psmt.executeQuery();
@@ -96,5 +95,46 @@ public class ChatroomDao {
 			
 		}
 		return chatroomNum;
+	}
+	public ArrayList<ChatroomVo> getChatroomList(String type) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		ArrayList<ChatroomVo> list = null;
+		try
+		{
+			System.out.println("type in dao : " + type);
+			list = new ArrayList<ChatroomVo>();
+			conn = getConnection();			
+			if(type.equals("five"))
+			{
+				System.out.println("hello");
+				psmt = conn.prepareStatement("select * from chatroom");
+				rs = psmt.executeQuery();
+				while(rs.next())
+				{
+					System.out.println("while 실행");
+					ChatroomVo vo = new ChatroomVo();
+					System.out.println("vo 생성");
+					vo.setChatroomNum(rs.getInt("chatroomNum"));
+					vo.setChatroomName(rs.getString("chatroomName"));
+					vo.setChatroomMadeTime(rs.getString("chatroomMadeTime"));
+					vo.setUserNum(rs.getInt("userNum"));
+					System.out.println("chatroomName : " + vo.getChatroomName());
+					list.add(vo);
+				}
+			}
+			
+		}
+		catch(Exception e)
+		{
+			
+		}
+		finally
+		{
+			
+		}
+		return list;
 	}
 }

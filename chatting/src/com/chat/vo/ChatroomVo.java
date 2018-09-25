@@ -1,12 +1,10 @@
 package com.chat.vo;
 
-import java.util.Date;
-
 public class ChatroomVo {
 
 	private int chatroomNum;
 	private String chatroomName;
-	private Date chatroomMadeTime;
+	private String chatroomMadeTime;
 	private String chatroomSubject;
 	private int userNum;
 	public String getChatroomSubject() {
@@ -27,10 +25,10 @@ public class ChatroomVo {
 	public void setChatroomName(String chatroomName) {
 		this.chatroomName = chatroomName;
 	}
-	public Date getChatroomMadeTime() {
+	public String getChatroomMadeTime() {
 		return chatroomMadeTime;
 	}
-	public void setChatroomMadeTime(Date chatroomMadeTime) {
+	public void setChatroomMadeTime(String chatroomMadeTime) {
 		this.chatroomMadeTime = chatroomMadeTime;
 	}
 	public int getUserNum() {

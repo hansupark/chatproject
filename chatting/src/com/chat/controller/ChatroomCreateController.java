@@ -2,7 +2,7 @@ package com.chat.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -34,8 +34,6 @@ public class ChatroomCreateController implements Controller{
 		cv.setChatroomName(chatroomName);
 		cv.setUserNum(userNum);
 		cv.setChatroomSubject(chatroomSubject);
-		Date date = new Date();
-		cv.setChatroomMadeTime(date);
 		//해쉬태그 리스트를 생성한다.
 		ArrayList<HashVo> list = new ArrayList<HashVo>();
 		for(int x = 0 ; x < 5 ; x++)
@@ -52,7 +50,7 @@ public class ChatroomCreateController implements Controller{
 		if(chatroomNum != -1)
 		{
 			service_2.setHash(list,chatroomNum);
-			HttpUtil.forward(req, res, "/chatList.jsp");
+			HttpUtil.forward(req, res, "/feed.jsp");
 			return;
 		}
 		else

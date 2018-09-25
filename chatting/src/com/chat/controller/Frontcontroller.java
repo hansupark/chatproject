@@ -20,13 +20,15 @@ public class Frontcontroller extends HttpServlet {
     	list.put("/userInsert.do",new UserInsertController());
     	list.put("/userLogin.do",new UserLoginController());
     	list.put("/chatroomCreate.do",new ChatroomCreateController());
+    	list.put("/chatroomGetList.do",new ChatroomGetList());
+    	list.put("/uploadimage.do",new imageUploadController());
     }
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String uri = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String path = uri.substring(contextPath.length());
-		System.out.println("path : " + path);
+		//System.out.println("path : " + path);
 		Controller controller = list.get(path);
 		controller.execute(request, response);
 	}
