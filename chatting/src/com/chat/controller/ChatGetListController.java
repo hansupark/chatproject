@@ -19,15 +19,34 @@ public class ChatGetListController implements Controller{
 		res.setContentType("text/html; charset = UTF-8");
 		ChatService service = ChatService.getInstance();
 		int chatroomNum = Integer.parseInt(req.getParameter("chatroomNum"));
-		System.out.println("chatroomNum = " + chatroomNum);
-		ArrayList<ChatVo> list = service.getChatList(chatroomNum);
+		int lastNum;
+		int firstNum;
+		ArrayList<ChatVo> list;
+		if(req.getParameter("lastNum") != null)
+		{
+			System.out.println("update getchatList 실행");
+			lastNum = Integer.parseInt(req.getParameter("lastNum"));
+			list = service.getChatList(chatroomNum,lastNum);
+		}
+		else if(req.getParameter("firstNum") != null)
+		{
+			System.out.println("Past getchatList 실행");
+			firstNum = Integer.parseInt(req.getParameter("firstNum"));
+			list = service.getChatListPast(chatroomNum, firstNum);
+		}
+		else
+		{
+			System.out.println("first getchatList 실행");
+			list = service.getChatList(chatroomNum);
+		}
 		StringBuffer result = new StringBuffer("");
 		result.append("{\"result\":[");
-		for(int x = 0 ; x < list.size(); x++)
+		for(int x = list.size() -1  ; x >= 0; x--)
 		{
 			result.append("[{\"value\" : \"" + list.get(x).getChatContent() +"\"},");
-			result.append("{\"value\" : \"" + list.get(x).getUserName() + "\"}]");
-			if(x != list.size() - 1)
+			result.append("{\"value\" : \"" + list.get(x).getUserName() + "\"},");
+			result.append("{\"value\" : \"" + list.get(x).getChatNum() + "\"}]");
+			if(x != 0)
 				result.append(",");
 		}
 		result.append("]}");

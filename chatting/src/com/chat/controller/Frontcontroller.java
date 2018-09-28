@@ -22,6 +22,7 @@ public class Frontcontroller extends HttpServlet {
     	list.put("/chatroomCreate.do",new ChatroomCreateController());
     	list.put("/chatroomGetList.do",new ChatroomGetList());
     	list.put("/chatGetList.do",new ChatGetListController());
+    	list.put("/chataddChat.do",new ChatAddChatController());
     	list.put("/uploadimage.do",new imageUploadController());
     }
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
