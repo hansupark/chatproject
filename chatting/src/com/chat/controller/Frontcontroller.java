@@ -21,6 +21,7 @@ public class Frontcontroller extends HttpServlet {
     	list.put("/userLogin.do",new UserLoginController());
     	list.put("/chatroomCreate.do",new ChatroomCreateController());
     	list.put("/chatroomGetList.do",new ChatroomGetList());
+    	list.put("/chatroomExit.do",new ChatroomExitController());
     	list.put("/chatGetList.do",new ChatGetListController());
     	list.put("/chataddChat.do",new ChatAddChatController());
     	list.put("/uploadimage.do",new imageUploadController());

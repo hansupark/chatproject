@@ -195,5 +195,42 @@ public class ChatDao {
 		}
 		return -1;
 	}
+	public ArrayList<ChatVo> getReturnChatList(int chatroomNum, int parseInt, int endNum) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs= null;
+		ArrayList<ChatVo> list = null;
+		try
+		{
+			list = new ArrayList<ChatVo>();
+			conn = getConnection();
+			psmt = conn.prepareStatement("select chatContent, user.userName,chatNum from chat,user where chatroomNum = ? and (chatNum between ? and ?)  and chat.userNum = user.userNum  order by chatTime desc");
+			psmt.setInt(1, chatroomNum);
+			psmt.setInt(2, parseInt);
+			psmt.setInt(3, endNum - 1);
+			rs = psmt.executeQuery();
+			while(rs.next())
+			{
+				ChatVo vo = new ChatVo();
+				//System.out.println("CHATDAO");
+				vo.setChatContent(rs.getString(1));
+				vo.setUserName(rs.getString(2));
+				vo.setChatNum(rs.getInt(3));
+				list.add(vo);
+			}
+			rs.close();
+		}
+		catch(Exception e)
+		{
+			
+		}
+		finally
+		{
+			close(psmt, conn);
+		}
+		return list;
+	}
+	
 	
 }
